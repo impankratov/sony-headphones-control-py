@@ -2,7 +2,7 @@
 
 import sys
 import bluetooth
-import control
+import SonyHeadphonesControl as SHC
 
 addr = None
 mode = None
@@ -30,19 +30,19 @@ ambientSoundBytes = None
 
 if mode == 'noise-cancelling':
     # Noise cancelling ?
-    ambientSoundBytes = control.getAmbientSound(True, 2, 0, False)
+    ambientSoundBytes = SHC.getAmbientSound(True, 2, 0, False)
 
 elif mode == 'wind-cancelling':
     # Wind cancelling ?
-    ambientSoundBytes = control.getAmbientSound(True, 1, 0, False)
+    ambientSoundBytes = SHC.getAmbientSound(True, 1, 0, False)
 
 elif mode == 'ambient-sound':
     # Ambient sound
-    ambientSoundBytes = control.getAmbientSound(True, 0, 19, False)
+    ambientSoundBytes = SHC.getAmbientSound(True, 0, 19, False)
 
 elif mode == 'disable':
-    # Disabled ambient sound control
-    ambientSoundBytes = control.getAmbientSound(False, 0, 0, False)
+    # Disabled ambient sound SHC
+    ambientSoundBytes = SHC.getAmbientSound(False, 0, 0, False)
 
 else:
     print('Unknown mode, exiting')
@@ -55,9 +55,9 @@ sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 sock.connect((host, port))
 
 # print('ambientSoundBytes', ambientSoundBytes)
-packetBytes = control.getPacket(ambientSoundBytes)
+packetBytes = SHC.getPacket(ambientSoundBytes)
 # print('packetBytes', packetBytes)
-packetCrcBytes = control.getCrcPacket(packetBytes)
+packetCrcBytes = SHC.getCrcPacket(packetBytes)
 # print('packetCrcBytes', packetCrcBytes)
 result = bytes(packetCrcBytes)
 # print('result', result)
