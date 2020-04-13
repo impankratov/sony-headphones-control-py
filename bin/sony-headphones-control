@@ -24,7 +24,7 @@ if len(service_matches) == 0:
 
 first_match = service_matches[0]
 port = first_match["port"]
-host = str(first_match["host"], 'utf-8')
+host = first_match["host"]
 
 ambientSoundBytes = None
 
