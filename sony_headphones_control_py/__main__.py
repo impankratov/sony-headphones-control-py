@@ -10,7 +10,7 @@ def main():
 
     if len(sys.argv) < 3:
         print("Invalid arguments, please specify BT address and desired mode")
-        sys.exit(0)
+        sys.exit(2)
     else:
         addr = sys.argv[1]
         mode = sys.argv[2]
@@ -46,7 +46,7 @@ def main():
 
     else:
         print("Unknown mode, exiting")
-        sys.exit(0)
+        sys.exit(2)
 
     print("Connecting to {} to enable {}".format(host, mode))
 
@@ -64,6 +64,7 @@ def main():
 
     sock.send(result)
     sock.close()
+    sys.exit(0)
 
 
 if __name__ == "__main__":
