@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "sony-headphones-control-py"
+version = "0.2.0"
+description = "Control sony headphones noise cancelling modes"
+authors = ["Ivan Pankratov <im.pankratov@ya.ru>"]
+readme = "README.md"
+packages = [{include = "sony_headphones_control_py"}]
+
+[tool.poetry.scripts]
+sony-headphones-control = 'sony_headphones_control_py.console:main'
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pybluez-updated = "^0.31"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
